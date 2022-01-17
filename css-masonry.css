@@ -1,0 +1,28 @@
+.css-masonry {
+  --css-masonry-wrapper: 1000px;
+  --css-masonry-gap: 20px;
+  --css-masonry-min: 200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--css-masonry-min), 1fr));
+  grid-gap: var(--css-masonry-gap);
+  max-width: var(--css-masonry-wrapper);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.css-masonry__item {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: dodgerblue;
+  color: gold;
+}
+
+.css-masonry__item:not(:last-child) {
+  margin-bottom: var(--css-masonry-gap);
+}
+
+.css-masonry__item--special {
+  min-height: 400px;
+  background-color: salmon;
+  color: aliceblue;
+}
