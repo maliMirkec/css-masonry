@@ -140,7 +140,7 @@ const trigger = (reload) => {
 
     const thisColNum = getColNum($elem.columns)
 
-    if($elem.colNum !== thisColNum || reload) {
+    if(($elem.colNum !== 0 && $elem.colNum !== thisColNum) || reload) {
       reset($elem)
     }
 
