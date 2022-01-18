@@ -9,20 +9,3 @@
   margin-right: auto;
   margin-left: auto;
 }
-
-.css-masonry__item {
-  padding: 10px;
-  border-radius: 4px;
-  background-color: dodgerblue;
-  color: gold;
-}
-
-.css-masonry__item:not(:last-child) {
-  margin-bottom: var(--css-masonry-gap);
-}
-
-.css-masonry__item--special {
-  min-height: 400px;
-  background-color: salmon;
-  color: aliceblue;
-}

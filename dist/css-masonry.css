@@ -1,0 +1,1 @@
+.css-masonry{--css-masonry-wrapper:1000px;--css-masonry-gap:20px;--css-masonry-min:200px;grid-gap:var(--css-masonry-gap);display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--css-masonry-min),1fr));margin-left:auto;margin-right:auto;max-width:var(--css-masonry-wrapper)}

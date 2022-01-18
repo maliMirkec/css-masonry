@@ -1,5 +1,5 @@
 /*
- * css-masonry <https://github.com/jonschlinkert/is-even>
+ * css-masonry <https://github.com/maliMirkec/css-masonry>
  *
  * Copyright (c) 2022, Silvestar Bistrović.
  * Released under the MIT License.
@@ -7,22 +7,21 @@
 
 'use strict';
 
-let selector = '.js-css-masonry'
+let selector = '.js-css-masonry',
   elems = [],
   iteration = 0,
   maxIteration = 0,
   watched = false;
 
-
 const getColNum = ($cols) => {
-  if(!$cols) {
+  if (!$cols) {
     return false
   }
 
   let colNum = 0
 
   $cols.forEach(($elem, i) => {
-    if($elem.getBoundingClientRect().top <= $cols[0].getBoundingClientRect().top) {
+    if ($elem.getBoundingClientRect().top <= $cols[0].getBoundingClientRect().top) {
       colNum++
     }
   })
@@ -31,12 +30,12 @@ const getColNum = ($cols) => {
 }
 
 const watch = () => {
-  if(!watched) {
+  if (!watched) {
     let resizeTimer;
 
     window.onresize = () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function() {
+      resizeTimer = setTimeout(function () {
         start(true);
       }, 100);
     }
@@ -56,11 +55,11 @@ const reset = () => {
 }
 
 const calculate = ($cols, colNum) => {
-  if(!$cols) {
+  if (!$cols) {
     return false
   }
 
-  if(colNum <= 1) {
+  if (colNum <= 1) {
     return false
   }
 
@@ -71,8 +70,8 @@ const calculate = ($cols, colNum) => {
   let $emptyCol = false
 
   $cols.forEach($col => {
-    if(!$col.children.length) {
-      if($cols[0].getBoundingClientRect().top === $col.getBoundingClientRect().top) {
+    if (!$col.children.length) {
+      if ($cols[0].getBoundingClientRect().top === $col.getBoundingClientRect().top) {
         $emptyCol = $col
       }
 
@@ -81,13 +80,13 @@ const calculate = ($cols, colNum) => {
 
     let $elem = Array.from($col.children).slice(-1).pop()
 
-    if(!$elem) {
+    if (!$elem) {
       return false
     }
 
     let rect = $elem.getBoundingClientRect()
 
-    if(rect.bottom >= mostBottomElem) {
+    if (rect.bottom >= mostBottomElem) {
       mostBottomElem = rect.bottom
       $mostBottomElem = {
         elem: $elem,
@@ -95,7 +94,7 @@ const calculate = ($cols, colNum) => {
       }
     }
 
-    if(rect.bottom <= leastBottomElem) {
+    if (rect.bottom <= leastBottomElem) {
       leastBottomElem = rect.bottom
       $leastBottomElem = {
         elem: $elem,
@@ -104,7 +103,7 @@ const calculate = ($cols, colNum) => {
     }
   })
 
-  if(!$mostBottomElem || !$leastBottomElem) {
+  if (!$mostBottomElem || !$leastBottomElem) {
     return false;
   }
 
@@ -113,27 +112,27 @@ const calculate = ($cols, colNum) => {
   const lTop = $leastBottomElem.rect.top
   const lBottom = $leastBottomElem.rect.bottom
 
-  if(mTop > lBottom || $emptyCol) {
-    if($emptyCol) {
+  if (mTop > lBottom || $emptyCol) {
+    if ($emptyCol) {
       $emptyCol.appendChild($mostBottomElem.elem)
-    } else if(mTop !== lTop && mBottom !== lBottom) {
+    } else if (mTop !== lTop && mBottom !== lBottom) {
       $leastBottomElem.elem.parentNode.appendChild($mostBottomElem.elem)
     }
 
     iteration++
 
-    if(iteration < maxIteration) {
+    if (iteration < maxIteration) {
       calculate($cols, colNum)
     }
   }
 }
 
 const start = (reload) => {
-  if(!elems.length) {
+  if (!elems.length) {
     return false
   }
 
-  if(reload) {
+  if (reload) {
     reset()
   }
 
@@ -150,14 +149,14 @@ const start = (reload) => {
 }
 
 const init = (options) => {
-  if(options.selector) {
+  if (options && options.selector) {
     selector = options.selector
   }
 
   const $elems = document.querySelectorAll(selector)
 
-  if($elems.length) {
-    $elems.forEach(($elem, i) => {
+  if ($elems.length) {
+    $elems.forEach(($elem) => {
       elems.push({
         html: $elem.innerHTML,
         parent: $elem,
