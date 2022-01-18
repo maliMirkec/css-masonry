@@ -44,16 +44,6 @@ const watch = () => {
   }
 }
 
-const reset = () => {
-  elems.forEach($elem => {
-    $elem.parent.innerHTML = $elem.html
-  })
-
-  elems = []
-
-  init()
-}
-
 const calculate = ($cols, colNum) => {
   if (!$cols) {
     return false
@@ -127,24 +117,36 @@ const calculate = ($cols, colNum) => {
   }
 }
 
+const reset = ($elem) => {
+  $elem.parent.innerHTML = $elem.html
+
+  elems = []
+
+  init()
+}
+
 const start = (reload) => {
   if (!elems.length) {
     return false
   }
 
-  if (reload) {
-    reset()
-  }
-
   iteration = 0
   maxIteration = 0
 
-  elems.forEach($elem => {
+  elems.forEach(($elem, i) => {
     $elem.columns.forEach($col => {
       maxIteration += $col.children.length ? $col.children.length : 0
     })
 
-    calculate($elem.columns, getColNum($elem.columns))
+    const thisColNum = getColNum($elem.columns)
+
+    if($elem.colNum !== thisColNum && reload) {
+      reset($elem)
+    }
+
+    elems[i].colNum = thisColNum
+
+    calculate($elem.columns, thisColNum)
   })
 }
 
@@ -157,10 +159,12 @@ const init = (options) => {
 
   if ($elems.length) {
     $elems.forEach(($elem) => {
+      const cols = $elem.children ? Array.from($elem.children) : []
       elems.push({
         html: $elem.innerHTML,
         parent: $elem,
-        columns: $elem.children ? Array.from($elem.children) : []
+        columns: cols,
+        colNum: 0
       })
     })
   }
