@@ -36,7 +36,7 @@ const watch = () => {
     window.onresize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
-        trigger(true);
+        trigger();
       }, 100);
     }
 
@@ -140,7 +140,7 @@ const trigger = (reload) => {
 
     const thisColNum = getColNum($elem.columns)
 
-    if($elem.colNum !== thisColNum && reload) {
+    if($elem.colNum !== thisColNum || reload) {
       reset($elem)
     }
 
