@@ -1,6 +1,6 @@
 {
   "name": "css-masonry",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A JavaScript recalculation for the CSS Grid masonry layout.",
   "repository": "git@github.com:maliMirkec/css-masonry.git",
   "author": "Star Bist <malimirkeccita@gmail.com>",

@@ -1,3 +1,3 @@
-const masonry = require('./css-masonry')
+const Masonry = require('./css-masonry')
 
-masonry()
+Masonry.init()

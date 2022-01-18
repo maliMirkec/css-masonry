@@ -36,7 +36,7 @@ const watch = () => {
     window.onresize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
-        start(true);
+        trigger(true);
       }, 100);
     }
 
@@ -125,7 +125,7 @@ const reset = ($elem) => {
   init()
 }
 
-const start = (reload) => {
+const trigger = (reload) => {
   if (!elems.length) {
     return false
   }
@@ -169,8 +169,11 @@ const init = (options) => {
     })
   }
 
-  start()
+  trigger()
   watch()
 }
 
-module.exports = init
+module.exports = {
+  init,
+  trigger
+}
