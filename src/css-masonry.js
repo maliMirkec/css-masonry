@@ -7,7 +7,8 @@
 
 'use strict';
 
-let selector = '.js-css-masonry',
+let parentSelector = '.js-css-masonry',
+  itemSelector = '.js-css-masonry-item',
   elems = [],
   iteration = 0,
   maxIteration = 0,
@@ -44,6 +45,25 @@ const watch = () => {
   }
 }
 
+const getLastElement = ($col) => {
+  if(!$col) {
+    return false
+  }
+
+  const $elems = $col.querySelectorAll(itemSelector)
+
+  if(!$elems.length) {
+    return false
+  }
+
+  const $elem = $elems[$elems.length - 1]
+
+  return {
+    elem: $elem,
+    rect: $elem.getBoundingClientRect()
+  }
+}
+
 const calculate = ($cols, colNum) => {
   if (!$cols) {
     return false
@@ -68,27 +88,25 @@ const calculate = ($cols, colNum) => {
       return false
     }
 
-    let $elem = Array.from($col.children).slice(-1).pop()
+    const $elem = getLastElement($col)
 
-    if (!$elem) {
+    if(!$elem) {
       return false
     }
 
-    let rect = $elem.getBoundingClientRect()
-
-    if (rect.bottom >= mostBottomElem) {
-      mostBottomElem = rect.bottom
+    if ($elem.rect.bottom >= mostBottomElem) {
+      mostBottomElem = $elem.rect.bottom
       $mostBottomElem = {
-        elem: $elem,
-        rect: rect
+        elem: $elem.elem,
+        rect: $elem.rect
       }
     }
 
-    if (rect.bottom <= leastBottomElem) {
-      leastBottomElem = rect.bottom
+    if ($elem.rect.bottom <= leastBottomElem) {
+      leastBottomElem = $elem.rect.bottom
       $leastBottomElem = {
-        elem: $elem,
-        rect: rect
+        elem: $elem.elem,
+        rect: $elem.rect
       }
     }
   })
@@ -117,13 +135,14 @@ const calculate = ($cols, colNum) => {
   }
 }
 
-const reset = ($elem) => {
-  $elem.parent.innerHTML = $elem.html
+// const reset = ($elem) => {
+//   console.log('reset');
+//   $elem.parent.innerHTML = $elem.html
 
-  elems = []
+//   elems = []
 
-  init()
-}
+//   init()
+// }
 
 const trigger = (reload) => {
   if (!elems.length) {
@@ -140,30 +159,34 @@ const trigger = (reload) => {
 
     const thisColNum = getColNum($elem.columns)
 
-    if(($elem.colNum !== 0 && $elem.colNum !== thisColNum) || reload) {
-      reset($elem)
-    }
+    // if(($elem.colNum !== 0 && $elem.colNum !== thisColNum) || reload) {
+    //   reset($elem)
+    // }
 
-    elems[i].colNum = thisColNum
+    // elems[i].colNum = thisColNum
 
     calculate($elem.columns, thisColNum)
   })
 }
 
 const init = (options) => {
-  if (options && options.selector) {
-    selector = options.selector
+  if (options && options.parentSelector) {
+    parentSelector = options.parentSelector
   }
 
-  const $elems = document.querySelectorAll(selector)
+  if (options && options.itemSelector) {
+    itemSelector = options.itemSelector
+  }
+
+  const $elems = document.querySelectorAll(parentSelector)
 
   if ($elems.length) {
     $elems.forEach(($elem) => {
-      const cols = $elem.children ? Array.from($elem.children) : []
+      const $cols = $elem.children ? Array.from($elem.children) : []
       elems.push({
         html: $elem.innerHTML,
         parent: $elem,
-        columns: cols,
+        columns: $cols,
         colNum: 0
       })
     })
