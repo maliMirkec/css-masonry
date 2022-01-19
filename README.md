@@ -111,3 +111,7 @@ Masonry.init({
 |---|---|---|
 | `parentSelector` | `'.js-css-masonry'` | CSS Masonry wrapper selector |
 | `itemSelector` | `'.js-css-masonry-item'` | CSS Masonry item selector |
+
+### Known issues
+
+Resizing the window messes up the order of the items.
