@@ -8,8 +8,11 @@ Why CSS Masonry?
 
 Because doing masonry layout in CSS could be messed up.
 
-![HTML structure](/assets/Masonry2@2x.jpg)
+![Messed example of CSS masonry layout](/assets/Masonry2@2x.jpg)
 
+## Demo
+
+Demo available here: [https://github.com/maliMirkec/css-masonry](https://github.com/maliMirkec/css-masonry).
 ## Installation
 
 `yarn add css-masonry`
