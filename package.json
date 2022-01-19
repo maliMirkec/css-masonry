@@ -1,6 +1,6 @@
 {
   "name": "css-masonry",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A JavaScript recalculation for the CSS Grid masonry layout.",
   "repository": "git@github.com:maliMirkec/css-masonry.git",
   "homepage": "https://css-masonry.silvestar.codes",
@@ -9,10 +9,13 @@
     "email": "me@silvestar.codes"
   },
   "author": "Silvestar Bistrović <me@silvestar.codes>",
-  "funding": {
+  "funding": [{
     "type": "buymeacoffee",
     "url": "https://www.buymeacoffee.com/p8Ug5NM"
-  },
+  }, {
+    "type": "paypal",
+    "url": "https://paypal.me/starbist"
+  }],
   "license": "MIT",
   "keywords": [
     "css",
