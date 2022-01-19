@@ -12,7 +12,7 @@ Because doing masonry layout in CSS could be messed up.
 
 ## Demo
 
-Demo available here: [https://github.com/maliMirkec/css-masonry](https://github.com/maliMirkec/css-masonry).
+Demo available here: [https://css-masonry.silvestar.codes](https://css-masonry.silvestar.codes).
 ## Installation
 
 `yarn add css-masonry`
