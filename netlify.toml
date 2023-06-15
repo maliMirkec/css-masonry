@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/"
+  to = "https://www.silvestar.codes/side-projects/css-masonry/"
+  status = 301
+  force = true
